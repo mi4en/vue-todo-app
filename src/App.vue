@@ -11,6 +11,7 @@
 import Todos from "./components/Todos";
 import AddTodo from "./components/AddTodo";
 import Header from "./components/layout/Header";
+import axios from 'axios';
 
 export default {
   name: "app",
@@ -22,31 +23,32 @@ export default {
   data() {
     return {
       todosFromData: [
-        {
-          id: 1,
-          title: "Todo one",
-          completed: false
-        },
-        {
-          id: 2,
-          title: "Todo two",
-          completed: false
-        },
-        {
-          id: 3,
-          title: "Todo three",
-          completed: false
-        }
+        
       ]
     };
   },
   methods: {
     deleteTodo(id) {
-      this.todosFromData = this.todosFromData.filter(value => value.id !== id);
+      axios.delete(`https://jsonplaceholder.typicode.com/todos/${id}`)
+        .then(res => this.todosFromData = this.todosFromData.filter(value => value.id !== id))
+        .catch(err => console.log(err))
     },
     addTodo(newTodo) {
-      this.todosFromData = [...this.todosFromData, newTodo]
+      const { title, complited } = newTodo;
+
+      axios.post('https://jsonplaceholder.typicode.com/todos', {
+        title,
+        complited
+      })
+        .then(res => this.todosFromData = [...this.todosFromData, res.data])
+        .catch(err => console.log(err))
+      
     }
+  },
+  created() {
+    axios.get('https://jsonplaceholder.typicode.com/todos?_limit=5')
+      .then(res => this.todosFromData = res.data)
+      .catch(err => console.log(err));
   }
 };
 </script>
