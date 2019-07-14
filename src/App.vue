@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <img id="vue-logo" alt="Vue logo" src="./assets/logo.png" />
-    <Todos msg="Todos: " v-bind:todos="todos"/>
+    <Todos v-bind:todos="todosFromAppVue"/>
   </div>
 </template>
 
@@ -15,7 +15,7 @@ export default {
   },
   data() {
     return {
-      todos: [
+      todosFromAppVue: [
         {
           id: 1,
           title: "Todo one",
@@ -24,7 +24,7 @@ export default {
         {
           id: 2,
           title: "Todo two",
-          completed: true
+          completed: false
         },
         {
           id: 3,

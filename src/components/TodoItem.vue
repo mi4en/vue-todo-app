@@ -11,12 +11,10 @@
 <script>
 export default {
     name: "TodoItem",
-    props: {
-        todo: Array
-    },
+    props: ['todo'],
     methods: {
         markComplete() {
-            this.todo.completed = !this.todo.compled;
+            this.todo.completed = !this.todo.completed;
         }
     }
 }
