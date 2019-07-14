@@ -1,21 +1,24 @@
 <template>
   <div id="app">
     <img id="vue-logo" alt="Vue logo" src="./assets/logo.png" />
-    <Todos v-bind:todos="todosFromAppVue"/>
+    <Header />
+    <Todos v-bind:todosFromAppVue="todosFromData" v-on:del-todo="deleteTodo"/>
   </div>
 </template>
 
 <script>
 import Todos from './components/Todos';
+import Header from './components/layout/Header'
 
 export default {
   name: "app",
   components: {
-    Todos
+    Todos,
+    Header
   },
   data() {
     return {
-      todosFromAppVue: [
+      todosFromData: [
         {
           id: 1,
           title: "Todo one",
@@ -33,6 +36,11 @@ export default {
         }
       ]
     };
+  },
+  methods: {
+    deleteTodo(id) {
+      this.todosFromData = this.todosFromData.filter(value => value.id !== id);
+    }
   }
 };
 </script>

@@ -1,8 +1,7 @@
 <template>
     <div>
-        <h1>Todos:</h1>
-        <div v-bind:key="todo.id" v-for="todo in todos">
-            <TodoItem v-bind:todo="todo"/>
+        <div v-bind:key="todoFromVForDirective.id" v-for="todoFromVForDirective in todosFromAppVue">
+            <TodoItem v-bind:todoFromVForDirective="todoFromVForDirective" v-on:del-todo="$emit('del-todo', todoFromVForDirective.id)"/>
         </div>
     </div>
 </template>
@@ -15,7 +14,7 @@ export default {
     components: {
         TodoItem
     },
-    props: ['todos']
+    props: ['todosFromAppVue']
 }
 </script>
 
