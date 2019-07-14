@@ -1,14 +1,14 @@
 <template>
   <div id="app">
-    <img id="vue-logo" alt="Vue logo" src="./assets/logo.png" />
+    <img alt="Vue logo" src="./assets/logo.png" class="center"/>
     <Header />
-    <Todos v-bind:todosFromAppVue="todosFromData" v-on:del-todo="deleteTodo"/>
+    <Todos v-bind:todosFromAppVue="todosFromData" v-on:del-todo="deleteTodo" />
   </div>
 </template>
 
 <script>
-import Todos from './components/Todos';
-import Header from './components/layout/Header'
+import Todos from "./components/Todos";
+import Header from "./components/layout/Header";
 
 export default {
   name: "app",
@@ -57,7 +57,9 @@ body {
   line-height: 1.4;
 }
 
-#vue-logo {
-  align-self: center;
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 </style>
