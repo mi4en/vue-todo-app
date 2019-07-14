@@ -4,6 +4,7 @@
             <input type="checkbox" name="" id="" v-on:change="markComplete">
             {{ todoFromVForDirective.title }}
             <button class="del" @click="$emit('del-todo', todoFromVForDirective.id)">x</button>
+            <button class="edit" @click="$emit('edit-todo', todoFromVForDirective.id)">e</button>
         </p>
     </div>
 </template>
@@ -39,6 +40,17 @@ export default {
     border-radius: 50%;
     cursor: pointer;
     float: right;
+}
+
+.edit {
+    background: #ffd900f5;
+    color: #fff;
+    border: none;
+    padding: 5px 9px;
+    border-radius: 50%;
+    cursor: pointer;
+    float: right;
+    margin-right: 5px;
 }
 </style>
 
