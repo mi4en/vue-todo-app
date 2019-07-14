@@ -2,56 +2,21 @@
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png" class="center"/>
     <Header />
-    <AddTodo v-on:add-todo="addTodo" />
-    <Todos v-bind:todosFromAppVue="todosFromData" v-on:del-todo="deleteTodo" />
+    <router-view/>
   </div>
 </template>
 
 <script>
-import Todos from "./components/Todos";
-import AddTodo from "./components/AddTodo";
 import Header from "./components/layout/Header";
-import axios from 'axios';
 
 export default {
-  name: "app",
+  name: 'app',
   components: {
-    Todos,
-    AddTodo,
     Header
-  },
-  data() {
-    return {
-      todosFromData: [
-        
-      ]
-    };
-  },
-  methods: {
-    deleteTodo(id) {
-      axios.delete(`https://jsonplaceholder.typicode.com/todos/${id}`)
-        .then(res => this.todosFromData = this.todosFromData.filter(value => value.id !== id))
-        .catch(err => console.log(err))
-    },
-    addTodo(newTodo) {
-      const { title, complited } = newTodo;
-
-      axios.post('https://jsonplaceholder.typicode.com/todos', {
-        title,
-        complited
-      })
-        .then(res => this.todosFromData = [...this.todosFromData, res.data])
-        .catch(err => console.log(err))
-      
-    }
-  },
-  created() {
-    axios.get('https://jsonplaceholder.typicode.com/todos?_limit=5')
-      .then(res => this.todosFromData = res.data)
-      .catch(err => console.log(err));
   }
-};
+}
 </script>
+
 
 <style>
 * {
